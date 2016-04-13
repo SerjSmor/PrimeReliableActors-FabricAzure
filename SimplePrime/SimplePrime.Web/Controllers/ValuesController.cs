@@ -20,47 +20,56 @@ namespace SimplePrime.Web.Controllers
         private readonly int DEFAULT_TO = 100;
 
         // GET api/values 
-        public int Get(int numActors, int modActors)
+        public Task<PrimeResult> Get(int numActors, int modActors)
         {
 
-            return numActors + modActors;
-            //var watch = System.Diagnostics.Stopwatch.StartNew();
 
-            //List<Task> runners = new List<Task>();
-            //List<int> resultsAggregate = new List<int>();
+            var watch = System.Diagnostics.Stopwatch.StartNew();
 
-            //int range = 100000;
-            //for (int i = 0; i < numActors; i++)
-            //{
-            //    int from = i * range;
-            //    int to = (i + 1) * range;
+            List<Task> runners = new List<Task>();
+            List<int> resultsAggregate = new List<int>();
+            List<IPrimeActor> actualTasks = new List<IPrimeActor>();
 
-            //    IPrimeActor primeActor = PrimeActorFactory.CreatePrimeActor(i);
-            //    runners.Add(primeActor.GetPrimeList(from, to));
-            //}
+            for (int i = 0; i < modActors; i++)
+            {
+                actualTasks.Add(PrimeActorFactory.CreatePrimeActor(i));
+            }
 
-            //Task.WaitAll(runners.ToArray());
+            
 
-            //foreach (Task<List<int>> task in runners)
-            //{
-            //    List<int> results = task.GetAwaiter().GetResult();
-            //    // aggregating all results from runners
-            //    foreach (var num in results)
-            //    {
-            //        resultsAggregate.Add(num);
-            //    }
+            int range = 100000;
+            for (int i = 0; i < numActors; i++)
+            {
+                int from = i * range;
+                int to = (i + 1) * range;
 
-            //    Console.WriteLine(String.Join(",", results));
-            //}
+                int primeActorIndex = i % modActors;
+                IPrimeActor primeActor = actualTasks.ElementAt(primeActorIndex);
+                runners.Add(primeActor.GetPrimeList(from, to));
+            }
 
-            //watch.Stop();
-            //string elapsed = watch.Elapsed.ToString();
+            Task.WaitAll(runners.ToArray());
 
-            //PrimeResult primeResult = new PrimeResult();
-            //primeResult.PrimeCount = resultsAggregate.Count;
-            //primeResult.RequestDuration = elapsed;
+            foreach (Task<List<int>> task in runners)
+            {
+                List<int> results = task.GetAwaiter().GetResult();
+                // aggregating all results from runners
+                foreach (var num in results)
+                {
+                    resultsAggregate.Add(num);
+                }
 
-            //return Task.FromResult(primeResult);
+                Console.WriteLine(String.Join(",", results));
+            }
+
+            watch.Stop();
+            string elapsed = watch.Elapsed.ToString();
+
+            PrimeResult primeResult = new PrimeResult();
+            primeResult.PrimeCount = resultsAggregate.Count;
+            primeResult.RequestDuration = elapsed;
+
+            return Task.FromResult(primeResult);
         }
 
         // GET api/values/5 
