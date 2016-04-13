@@ -12,9 +12,9 @@ namespace PrimeActor.Interfaces
     {
         private static readonly Uri uri = new Uri("fabric:/SimplePrime/PrimeActorService");
 
-        public static IPrimeActor CreatePrimeActor()
+        public static IPrimeActor CreatePrimeActor(int id)
         {
-            ActorId actorId = ActorId.CreateRandom();
+            ActorId actorId = new ActorId(id);
             IPrimeActor primeActor = ActorProxy.Create<IPrimeActor>(actorId, uri);
             return primeActor;
         }

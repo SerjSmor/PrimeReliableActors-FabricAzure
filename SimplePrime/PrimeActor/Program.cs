@@ -31,33 +31,6 @@ namespace PrimeActor
                 ActorRuntime.RegisterActorAsync<PrimeActor>(
                    (context, actorType) => new ActorService(context, actorType, () => new PrimeActor())).GetAwaiter().GetResult();
 
-                //var watch = System.Diagnostics.Stopwatch.StartNew();
-
-                //List<Task> runners = new List<Task>();
-                //int batchMax = 5;
-                //Uri uri = new Uri(SERVICE_NAME);
-                //int range = 100000;
-                //for (int i = 0; i < batchMax; i++)
-                //{
-                //    int from = i * range;
-                //    int to = (i + 1) * range;
-
-                //    ActorId actorId = ActorId.CreateRandom();
-                //    IPrimeActor primeActor = ActorProxy.Create<IPrimeActor>(actorId, uri);
-                //    runners.Add(primeActor.GetPrimeList(from, to));
-                //}
-
-                //Task.WaitAll(runners.ToArray());
-
-                //foreach (Task<List<int>> task in runners)
-                //{
-                //    List<int> results = task.GetAwaiter().GetResult();
-                //    Console.WriteLine(String.Join(",", results));
-                //}
-
-                //watch.Stop();
-                //string elapsed = watch.Elapsed.ToString();
-                //System.Diagnostics.Debug.WriteLine(elapsed);
 
                 Thread.Sleep(Timeout.Infinite);
             }

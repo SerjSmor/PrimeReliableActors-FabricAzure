@@ -118,6 +118,10 @@
       <Project>{ad64bf73-7e00-4a69-a758-4809c00cb802}</Project>
       <Name>PrimeActor.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SimplePrime.Common\SimplePrime.Common.csproj">
+      <Project>{8803b1fe-d384-4a96-9893-1bf984dca998}</Project>
+      <Name>SimplePrime.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

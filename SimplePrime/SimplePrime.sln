@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePrime.Web", "SimplePr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePrime.ConsoleWebRequests", "SimplePrime.ConsoleWebRequests\SimplePrime.ConsoleWebRequests.csproj", "{E4317F81-49C0-447B-9998-8418B0D593B1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePrime.Common", "SimplePrime.Common\SimplePrime.Common.csproj", "{8803B1FE-D384-4A96-9893-1BF984DCA998}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePrime.ConsolePrimeRunner", "SimplePrime.ConsolePrimeRunner\SimplePrime.ConsolePrimeRunner.csproj", "{6788828B-D923-43B7-8800-93F7BC21DC2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +59,22 @@ Global
 		{E4317F81-49C0-447B-9998-8418B0D593B1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E4317F81-49C0-447B-9998-8418B0D593B1}.Release|x64.ActiveCfg = Release|Any CPU
 		{E4317F81-49C0-447B-9998-8418B0D593B1}.Release|x64.Build.0 = Release|Any CPU
+		{8803B1FE-D384-4A96-9893-1BF984DCA998}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8803B1FE-D384-4A96-9893-1BF984DCA998}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8803B1FE-D384-4A96-9893-1BF984DCA998}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8803B1FE-D384-4A96-9893-1BF984DCA998}.Debug|x64.Build.0 = Debug|Any CPU
+		{8803B1FE-D384-4A96-9893-1BF984DCA998}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8803B1FE-D384-4A96-9893-1BF984DCA998}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8803B1FE-D384-4A96-9893-1BF984DCA998}.Release|x64.ActiveCfg = Release|Any CPU
+		{8803B1FE-D384-4A96-9893-1BF984DCA998}.Release|x64.Build.0 = Release|Any CPU
+		{6788828B-D923-43B7-8800-93F7BC21DC2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6788828B-D923-43B7-8800-93F7BC21DC2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6788828B-D923-43B7-8800-93F7BC21DC2C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6788828B-D923-43B7-8800-93F7BC21DC2C}.Debug|x64.Build.0 = Debug|Any CPU
+		{6788828B-D923-43B7-8800-93F7BC21DC2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6788828B-D923-43B7-8800-93F7BC21DC2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6788828B-D923-43B7-8800-93F7BC21DC2C}.Release|x64.ActiveCfg = Release|Any CPU
+		{6788828B-D923-43B7-8800-93F7BC21DC2C}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
