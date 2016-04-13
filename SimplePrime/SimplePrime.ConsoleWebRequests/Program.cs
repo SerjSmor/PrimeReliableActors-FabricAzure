@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimplePrime.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -11,55 +12,28 @@ namespace SimplePrime.ConsoleWebRequests
     class Program
     {
         private static readonly String CLUSTER_URL = "http://sense.eastus.cloudapp.azure.com";
+        private static readonly String LOCALHOST_URL = "http://localhost";
+
         private static readonly String PORT = "19080";
         private static readonly String FULL_URL = CLUSTER_URL + ":" + PORT;
-        private static readonly String REQUEST_STRING = "/simpleprime/api/values";
+        private static readonly String REQUEST_STRING = "/simpleprime/api/values/?numActors=";
 
         static void Main(string[] args)
         {
             HttpClient client = new HttpClient();
-
-            //var watch = System.Diagnostics.Stopwatch.StartNew();
-
-            //List<Task> runners = new List<Task>();
-            //int batchMax = 5;
-            //Uri uri = new Uri(SERVICE_NAME);
-            //int range = 100000;
-            //for (int i = 0; i < batchMax; i++)
-            //{
-            //    int from = i * range;
-            //    int to = (i + 1) * range;
-
-            //    ActorId actorId = ActorId.CreateRandom();
-            //    IPrimeActor primeActor = ActorProxy.Create<IPrimeActor>(actorId, uri);
-            //    runners.Add(primeActor.GetPrimeList(from, to));
-            //}
-
-            //Task.WaitAll(runners.ToArray());
-
-            //foreach (Task<List<int>> task in runners)
-            //{
-            //    List<int> results = task.GetAwaiter().GetResult();
-            //    Console.WriteLine(String.Join(",", results));
-            //}
-
-            //watch.Stop();
-            //string elapsed = watch.Elapsed.ToString();
-
             client.BaseAddress = new Uri(FULL_URL);
             client.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
-            
-            HttpResponseMessage response = client.GetAsync(REQUEST_STRING).Result;
+
+            // it's the number of the actors that will be initialsed in the cluster
+            int numActors = 10;
+            String FULL_REQUEST = REQUEST_STRING + numActors;
+            HttpResponseMessage response = client.GetAsync(FULL_REQUEST).Result;
 
             if (response.IsSuccessStatusCode)
             {
-                var numbers = response.Content.ReadAsAsync<List<int>>().Result;
-
-                foreach (var number in numbers)
-                {
-                    Console.WriteLine("{0}", number);
-                }
+                PrimeResult result = response.Content.ReadAsAsync<PrimeResult>().Result;
+                Console.WriteLine("number of primes:{0}, duration time:{1}", result.PrimeCount, result.RequestDuration);
             }
             else
             {

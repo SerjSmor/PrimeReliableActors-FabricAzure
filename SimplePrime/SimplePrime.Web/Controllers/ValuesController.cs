@@ -20,7 +20,7 @@ namespace SimplePrime.Web.Controllers
         private readonly int DEFAULT_TO = 100;
 
         // GET api/values 
-        public Task<PrimeResult> Get(int numActors, int modActors)
+        public Task<PrimeResult> Get(int numActors)
         {
 
 
@@ -30,21 +30,13 @@ namespace SimplePrime.Web.Controllers
             List<int> resultsAggregate = new List<int>();
             List<IPrimeActor> actualTasks = new List<IPrimeActor>();
 
-            for (int i = 0; i < modActors; i++)
-            {
-                actualTasks.Add(PrimeActorFactory.CreatePrimeActor(i));
-            }
-
-            
-
             int range = 100000;
             for (int i = 0; i < numActors; i++)
             {
                 int from = i * range;
                 int to = (i + 1) * range;
 
-                int primeActorIndex = i % modActors;
-                IPrimeActor primeActor = actualTasks.ElementAt(primeActorIndex);
+                IPrimeActor primeActor = PrimeActorFactory.CreatePrimeActor();
                 runners.Add(primeActor.GetPrimeList(from, to));
             }
 
