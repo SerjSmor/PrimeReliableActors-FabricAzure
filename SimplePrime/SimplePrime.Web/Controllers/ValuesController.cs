@@ -20,7 +20,7 @@ namespace SimplePrime.Web.Controllers
         private readonly int DEFAULT_TO = 100;
 
         // GET api/values 
-        public Task<PrimeResult> Get(int numOfRuns)
+        public Task<PrimeResult> Get(int actorNum)
         {
 
 
@@ -30,22 +30,15 @@ namespace SimplePrime.Web.Controllers
             List<int> resultsAggregate = new List<int>();
             List<IPrimeActor> actualTasks = new List<IPrimeActor>();
 
-            int range = 10000;
-            int top = 100;
-
-            for (int i = 0; i < numOfRuns; i++)
-            {
-                for (int j = 0; j < top; j++)
-                {
-                    int from = j * range;
-                    int to = (j + 1) * range;
-
-                    IPrimeActor primeActor = PrimeActorFactory.CreatePrimeActor();
-                    runners.Add(primeActor.GetPrimeList(from, to));
-                }
-            }
+            int from = 0;
+            int to = 800000;
            
-
+            for (int i = 0; i < actorNum; i++)
+            {
+                IPrimeActor primeActor = PrimeActorFactory.CreatePrimeActor();
+                runners.Add(primeActor.GetPrimeList(from, to));
+            }
+            
             Task.WaitAll(runners.ToArray());
 
             foreach (Task<List<int>> task in runners)
