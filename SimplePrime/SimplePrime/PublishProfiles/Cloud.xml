@@ -16,6 +16,6 @@
                                     StoreName="My" />
 
   -->
-  <ClusterConnectionParameters ConnectionEndpoint="sense.eastus.cloudapp.azure.com:19000" />
+  <ClusterConnectionParameters ConnectionEndpoint="sense15.westeurope.cloudapp.azure.com:19000" />
   <ApplicationParameterFile Path="..\ApplicationParameters\Cloud.xml" />
 </PublishProfile>
