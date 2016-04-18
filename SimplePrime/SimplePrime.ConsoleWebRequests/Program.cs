@@ -11,7 +11,7 @@ namespace SimplePrime.ConsoleWebRequests
 {
     class Program
     {
-        private static readonly String CLUSTER_URL = "http://sense.eastus.cloudapp.azure.com";
+        private static readonly String CLUSTER_URL = "ENTER_CLUSTER_URL";
         private static readonly String LOCALHOST_URL = "http://localhost";
 
         private static readonly String PORT = "19080";
